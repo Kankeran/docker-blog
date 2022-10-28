@@ -1,0 +1,43 @@
+version: '3.9'
+services:
+  blog_postgresql:
+    image: postgres:14.4-bullseye
+    container_name: blog_postgresql
+    ports:
+      - "5432:5432"
+    networks:
+      - blog_net
+    volumes:
+      - ./docker/db:/docker-entrypoint-initdb.d/
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      APP_DB_USER: postgres
+      APP_DB_PASS: 7daNLd@om8N4
+      APP_DB_NAME: blog
+
+  blog:
+    build:
+      context: .
+      dockerfile: './docker/blog/Dockerfile'
+    container_name: blog
+    depends_on:
+      - blog_postgresql
+    ports:
+      - "30303:2345"
+      - "80:8080"
+    networks:
+      - blog_net
+    volumes:
+      - ./blog:/go/blog
+    command: ["/bin/sh", "/run.sh"]
+
+networks:
+  blog_net:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.144.0/24
