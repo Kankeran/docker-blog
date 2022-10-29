@@ -1,3 +1,3 @@
 [submodule "blog-service"]
 	path = blog-service
-	url = git@github.com:Kankeran/blog-service.git
+	url = https://github.com/Kankeran/blog-service.git
