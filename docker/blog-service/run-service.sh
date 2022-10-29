@@ -6,7 +6,7 @@ cd /go/blog-service/blog/src/cmd && dlv debug -l ":2345" --continue --api-versio
 
 PID=$!
 
-inotifywait -e modify -e create -e delete -e move -e attrib -r --exclude "\.(css|js|html|git)" /go/blog-service/blog
+inotifywait -e modify -e create -e delete -e move -e attrib -r --exclude "\.(css|js|html|git|scss)" /go/blog-service/blog
 
 kill -9 $PID
 pkill -f "/tmp/__blog_debug_bin"

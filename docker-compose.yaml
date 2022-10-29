@@ -30,7 +30,7 @@ services:
       - blog_net
     volumes:
       - ./blog-service:/go/blog-service
-    command: ["/bin/sh", "/run-service.sh"]
+    command: ["/bin/sh", "/run.sh"]
     environment:
       - BLOG_WORKDIR=/go/blog-service
 
