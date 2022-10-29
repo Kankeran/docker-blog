@@ -10,7 +10,7 @@
             "request": "attach",
             "mode": "remote",
             "remotePath": "",
-            "substitutePath": [{"from": "${workspaceFolder}/blog", "to": "/go/blog"}],
+            "substitutePath": [{"from": "${workspaceFolder}/blog-service", "to": "/go/blog-service"}],
             "port": 30303,
             "host": "127.0.0.1"
         }

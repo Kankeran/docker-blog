@@ -16,11 +16,11 @@ services:
       APP_DB_PASS: 7daNLd@om8N4
       APP_DB_NAME: blog
 
-  blog:
+  blog_service:
     build:
       context: .
-      dockerfile: './docker/blog/Dockerfile'
-    container_name: blog
+      dockerfile: './docker/blog-service/Dockerfile'
+    container_name: blog_service
     depends_on:
       - blog_postgresql
     ports:
@@ -29,8 +29,10 @@ services:
     networks:
       - blog_net
     volumes:
-      - ./blog:/go/blog
-    command: ["/bin/sh", "/run.sh"]
+      - ./blog-service:/go/blog-service
+    command: ["/bin/sh", "/run-service.sh"]
+    environment:
+      - BLOG_WORKDIR=/go/blog-service
 
 networks:
   blog_net:
