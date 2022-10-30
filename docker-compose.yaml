@@ -32,7 +32,13 @@ services:
       - ./blog-service:/go/blog-service
     command: ["/bin/sh", "/run.sh"]
     environment:
-      - BLOG_WORKDIR=/go/blog-service
+      BLOG_WORKDIR: /go/blog-service
+      POSTGRES_HOST: blog_postgresql
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASS: 7daNLd@om8N4
+      POSTGRES_DB: blog
+      POSTGRES_SSLMODE: disable
 
 networks:
   blog_net:
